@@ -6,12 +6,16 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/01/30 17:03:40 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/01/31 19:12:09 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
+
+////////////////////////
+# include <stdio.h>
+///////////////////////
 
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
@@ -27,18 +31,15 @@
 # define RIGHT_KEY 124
 # define MO 0.4
 # define RO 0.25
+# define EXIT "wolf3d: finish\n"
+# define ERR_MAP "Error: incorrect map\n"
+# define ERR_MLX "Error: error mlx\n"
+# define ERR_MALLOC "Error: error malloc\n"
+# define ERR_OPCL "Error: error open or close\n"
+# define ERR_USAGE "Usage: ./wolf3d <path_map>\n"
 
-typedef struct	s_ptr
+typedef struct	s_wolf
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
-	void		*xpm_ptr;
-	char		*my_xpm;
-	char		*my_img_string;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
 	char		*str;
 	int			**map;
 	int			map_height;
@@ -46,6 +47,9 @@ typedef struct	s_ptr
 	int			step_x;
 	int			step_y;
 	int			key_press;
+	int			hit;
+	int			side;
+	int			wall_height;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -63,17 +67,69 @@ typedef struct	s_ptr
 	double		pos_to_map_y;
 	double		delta_x;
 	double		delta_y;
-	int			hit;
-	int			side;
-	int			wall_height;
 	double		wall_distance;
-}				t_ptr;
+}				t_wolf;
 
-int				deal_key(int key, t_ptr *ptr);
-int				hook_close(t_ptr *ptr);
-void			wolf_calcul(t_ptr *ptr);
-void			parsing(t_ptr *ptr, char *argv);
-int				deal_mouse(int mouse, int x, int y, t_ptr *ptr);
-void			wolf_init(t_ptr *ptr);
+typedef struct	s_img
+{
+	void		*xpm_img;
+	void		*mlx_img;
+	char		*data_img;
+	char		*data_xpm;
+	int			**map;
+	int			bperpix;
+	int			size_line;
+	int			endian;
+}				t_img;
+
+typedef struct		s_infoswind
+{
+	int				width;
+	int				height;
+	t_img			*img;
+	t_wolf			*wolf;
+}				t_infoswind;
+
+typedef struct	s_mlx
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*xpm_ptr;
+	t_infoswind		*infos;
+}				t_mlx;
+
+/*
+**	wolf_err.c
+*/
+void			wolf_err(int id);
+void			wolf_exit(int id);
+
+/*
+**	wolf_init.c
+*/
+void			wolf_init(t_infoswind *infos);
+
+/*
+**	wolf_windows.c
+*/
+void			wolf_wind_init(t_infoswind *infos);
+void			wolf_graph(t_mlx *mlx);
+
+/*
+**	wolf_calc.c
+*/
+void			wolf_calcul(t_mlx *mlx);
+
+/*
+**	wolf_deal.c
+*/
+int				deal_key(int key, t_mlx *mlx);
+int				hook_close(t_wolf *wolf);
+int				deal_mouse(int mouse, int x, int y, t_wolf *wolf);
+
+/*
+**	wolf_parsing.c
+*/
+void			parsing(t_wolf *wolf, char *argv);
 
 #endif
