@@ -6,63 +6,58 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:11:08 by gdrai             #+#    #+#             */
-/*   Updated: 2019/01/31 18:37:04 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:24:10 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		deal_key2(int key, t_mlx *mlx)
+int		key_press(int key, t_mlx *mlx)
 {
-	if (key == DOWN_KEY)
-	{
-		if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x - MO * mlx->infos->wolf->dir_x)][(int)mlx->infos->wolf->pos_y] == 0)
-			mlx->infos->wolf->pos_x -= MO * mlx->infos->wolf->dir_x;
-		if (mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x][(int)(mlx->infos->wolf->pos_y - MO * mlx->infos->wolf->dir_y)] == 0)
-			mlx->infos->wolf->pos_y -= MO * mlx->infos->wolf->dir_y;
-	}
 	if (key == RIGHT_KEY)
-	{
-		mlx->infos->wolf->previous_dir_x = mlx->infos->wolf->dir_x;
-		mlx->infos->wolf->dir_x = mlx->infos->wolf->dir_x * cosf(-RO) - mlx->infos->wolf->dir_y * sinf(-RO);
-		mlx->infos->wolf->dir_y = mlx->infos->wolf->previous_dir_x * sinf(-RO) + mlx->infos->wolf->dir_y * cosf(-RO);
-		mlx->infos->wolf->prev_plane_x = mlx->infos->wolf->plane_x;
-		mlx->infos->wolf->plane_x = mlx->infos->wolf->plane_x * cosf(-RO) - mlx->infos->wolf->plane_y * sinf(-RO);
-		mlx->infos->wolf->plane_y = mlx->infos->wolf->prev_plane_x * sinf(-RO) + mlx->infos->wolf->plane_y * cosf(-RO);
-	}
+		mlx->infos->right = 1;
+	else if (key == LEFT_KEY)
+		mlx->infos->left = 1;
+	else if (key == UP_KEY)
+		mlx->infos->up = 1;
+	else if (key == DOWN_KEY)
+		mlx->infos->down = 1;
 	return (0);
 }
 
-int		deal_key(int key, t_mlx *mlx)
+int		key_release(int key, t_mlx *mlx)
 {
 	if (key == ESCAPE_KEY)
-		exit(0);
-	else if (key == UP_KEY)
-	{
-		if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x + MO * mlx->infos->wolf->dir_x)][(int)mlx->infos->wolf->pos_y] == 0)
-			mlx->infos->wolf->pos_x += MO * mlx->infos->wolf->dir_x;
-		if (mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x][(int)(mlx->infos->wolf->pos_y + MO * mlx->infos->wolf->dir_y)] == 0)
-			mlx->infos->wolf->pos_y += MO * mlx->infos->wolf->dir_y;
-	}
+		wolf_exit(0);
+	if (key == RIGHT_KEY)
+		mlx->infos->right = 0;
 	else if (key == LEFT_KEY)
-	{
-		mlx->infos->wolf->previous_dir_x = mlx->infos->wolf->dir_x;
-		mlx->infos->wolf->dir_x = mlx->infos->wolf->dir_x * cos(RO) - mlx->infos->wolf->dir_y * sin(RO);
-		mlx->infos->wolf->dir_y = mlx->infos->wolf->previous_dir_x * sin(RO) + mlx->infos->wolf->dir_y * cos(RO);
-		mlx->infos->wolf->prev_plane_x = mlx->infos->wolf->plane_x;
-		mlx->infos->wolf->plane_x = mlx->infos->wolf->plane_x * cos(RO) - mlx->infos->wolf->plane_y * sin(RO);
-		mlx->infos->wolf->plane_y = mlx->infos->wolf->prev_plane_x * sin(RO) + mlx->infos->wolf->plane_y * cos(RO);
-	}
-	else
-		deal_key2(key, mlx);
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-	wolf_graph(mlx);
+		mlx->infos->left = 0;
+	else if (key == UP_KEY)
+		mlx->infos->up = 0;
+	else if (key == DOWN_KEY)
+		mlx->infos->down = 0;
 	return (0);
 }
 
 int		hook_close(t_wolf *wolf)
 {
 	(void)wolf;
-	exit(0);
+	wolf_exit(0);
+	return (0);
+}
+
+int	loop_hook(t_mlx *mlx)
+{
+	if (mlx->infos->up)
+		wolf_move_up(mlx);
+	if (mlx->infos->down)
+		wolf_move_down(mlx);
+	if (mlx->infos->right)
+		wolf_move_right(mlx);
+	if (mlx->infos->left)
+		wolf_move_left(mlx);
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	wolf_graph(mlx);
 	return (0);
 }

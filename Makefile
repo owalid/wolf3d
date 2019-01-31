@@ -6,7 +6,7 @@
 #    By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/31 17:22:25 by oel-ayad          #+#    #+#              #
-#    Updated: 2019/01/31 17:22:59 by oel-ayad         ###   ########.fr        #
+#    Updated: 2019/01/31 20:26:05 by oel-ayad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_NAME = main.c \
 			wolf_init.c \
 			wolf_windows.c \
 			wolf_parsing.c \
+			wolf_move.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

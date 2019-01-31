@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/01/31 19:12:09 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:24:51 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 # define RIGHT_KEY 124
 # define MO 0.4
 # define RO 0.25
-# define EXIT "wolf3d: finish\n"
-# define ERR_MAP "Error: incorrect map\n"
-# define ERR_MLX "Error: error mlx\n"
-# define ERR_MALLOC "Error: error malloc\n"
-# define ERR_OPCL "Error: error open or close\n"
-# define ERR_USAGE "Usage: ./wolf3d <path_map>\n"
+# define EXIT "wolf3d: finish"
+# define ERR_MAP "Error: incorrect map"
+# define ERR_MLX "Error: error mlx"
+# define ERR_MALLOC "Error: error malloc"
+# define ERR_OPCL "Error: error open or close"
+# define ERR_USAGE "Usage: ./wolf3d <path_map>"
 
 typedef struct	s_wolf
 {
@@ -86,6 +86,10 @@ typedef struct		s_infoswind
 {
 	int				width;
 	int				height;
+	short			right;
+	short			left;
+	short			up;
+	short			down;
 	t_img			*img;
 	t_wolf			*wolf;
 }				t_infoswind;
@@ -123,13 +127,23 @@ void			wolf_calcul(t_mlx *mlx);
 /*
 **	wolf_deal.c
 */
-int				deal_key(int key, t_mlx *mlx);
 int				hook_close(t_wolf *wolf);
 int				deal_mouse(int mouse, int x, int y, t_wolf *wolf);
+int				key_press(int key, t_mlx *mlx);
+int				key_release(int key, t_mlx *mlx);
+int				loop_hook(t_mlx *mlx);
 
 /*
 **	wolf_parsing.c
 */
 void			parsing(t_wolf *wolf, char *argv);
+
+/*
+**	wolf_move.c
+*/
+void			wolf_move_left(t_mlx *mlx);
+void			wolf_move_right(t_mlx *mlx);
+void			wolf_move_up(t_mlx *mlx);
+void			wolf_move_down(t_mlx *mlx);
 
 #endif

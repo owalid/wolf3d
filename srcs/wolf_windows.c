@@ -6,7 +6,7 @@
 /*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:18:18 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/01/31 19:14:03 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:14:41 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void			wolf_wind_init(t_infoswind *infos)
 		wolf_err(2);
 	mlx->infos = infos;
 	wolf_graph(mlx);
-	mlx_hook(mlx->win_ptr, 2, 5, deal_key, mlx);
+	mlx_hook(mlx->win_ptr, 2, (1L << 0), key_press, mlx);
+	mlx_hook(mlx->win_ptr, 3, (1L << 1), key_release, mlx);
 	mlx_hook(mlx->win_ptr, 17, 1L << 0, hook_close, mlx);
+	mlx_loop_hook(mlx->mlx_ptr, loop_hook, mlx);
 	mlx_loop(mlx->mlx_ptr);
 }
