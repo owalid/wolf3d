@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx->infos->wolf_calc.c                                        :+:      :+:    :+:   */
+/*   wolf_calc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:12:37 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/01/31 19:09:06 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:55:06 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,43 @@ void	wait_for_hit(t_mlx *mlx)
 
 void	fill_screen(t_mlx *mlx, int i)
 {
-	int y;
+	int start;
+	int end;
 	int j;
+	int k;
+	int l;
 
-	y = -1;
-	while (++y < mlx->infos->wolf->wall_height / 2 && y < HEIGHT / 2)
+	if (HEIGHT - mlx->infos->wolf->wall_height <= 0)
 	{
-		j = 4 * ((HEIGHT / 2 + y) * WIDTH + i);
-		mlx->infos->img->data_img[j] = (char)0;
-		mlx->infos->img->data_img[j + 1] = (char)0;
-		mlx->infos->img->data_img[j + 2] = (mlx->infos->wolf->side == 1) ? (char)140 : (char)180;
-		j = 4 * ((HEIGHT / 2 - y) * WIDTH + i);
-		mlx->infos->img->data_img[j] = (char)0;
-		mlx->infos->img->data_img[j + 1] = (char)0;
-		mlx->infos->img->data_img[j + 2] = (mlx->infos->wolf->side == 1) ? (char)140 : (char)180;
+		start = -1;
+		end = HEIGHT - 1;
 	}
-	if (mlx->infos->wolf->wall_height < HEIGHT)
+	else
 	{
-		while (mlx->infos->wolf->wall_height / 2 < HEIGHT / 2)
+		start = (HEIGHT - mlx->infos->wolf->wall_height) / 2 - 1;
+		end = HEIGHT - start - 1;
+	}
+	while (++start <= end)
+	{
+		k = start * 256 - HEIGHT * 128 + mlx->infos->wolf->wall_height * 128;
+		mlx->infos->wolf->tex_y = ((k * 64) / mlx->infos->wolf->wall_height) / 256;
+		j = 4 * (start * WIDTH + i);
+		l = 4 * (mlx->infos->wolf->tex_x * 64 + mlx->infos->wolf->tex_y);
+		if (j >= 0 && j < 2439998 && l >= 0 && l < 16382)
 		{
-			j = 4 * ((HEIGHT / 2 + mlx->infos->wolf->wall_height / 2) * WIDTH + i);
-			mlx->infos->img->data_img[j] = (char)0;
-			mlx->infos->img->data_img[j + 1] = (char)80;
-			mlx->infos->img->data_img[j + 2] = (char)0;
-			j = 4 * ((HEIGHT / 2 - mlx->infos->wolf->wall_height / 2) * WIDTH + i);
-			mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_xpm[j];
-			mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_xpm[j + 1];
-			mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_xpm[j + 2];
-			mlx->infos->wolf->wall_height++;
+			mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_colorstone[l];
+			mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_colorstone[l + 1];
+			mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_colorstone[l + 2];
 		}
+	}
+	while (++end < HEIGHT)
+	{
+		j = 4 * (end * WIDTH + i) + 1;
+		mlx->infos->img->data_img[j] = (char)80;
+		j = 4 * ((HEIGHT - end) * WIDTH + i);
+		mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_xpm[j];
+		mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_xpm[j + 1];
+		mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_xpm[j + 2];
 	}
 }
 
@@ -107,12 +115,26 @@ void	wolf_calcul(t_mlx *mlx)
 		mlx->infos->wolf->delta_y = fabs(1 / mlx->infos->wolf->dir_ray_y);
 		pos_to_map(mlx);
 		wait_for_hit(mlx);
+		mlx->infos->wolf->nb_text = mlx->infos->wolf->map[(int)mlx->infos->wolf->map_x][(int)mlx->infos->wolf->map_y];
 		if (mlx->infos->wolf->side == 0)
+		{
 			mlx->infos->wolf->wall_distance = (mlx->infos->wolf->map_x - mlx->infos->wolf->pos_x +
-					(1 - mlx->infos->wolf->step_x) / 2) / mlx->infos->wolf->dir_ray_x;
+				(1 - mlx->infos->wolf->step_x) / 2) / mlx->infos->wolf->dir_ray_x;
+			mlx->infos->wolf->wall_x = mlx->infos->wolf->pos_y + mlx->infos->wolf->wall_distance *
+				mlx->infos->wolf->dir_ray_y;
+		}
 		else
+		{
 			mlx->infos->wolf->wall_distance = (mlx->infos->wolf->map_y - mlx->infos->wolf->pos_y +
-					(1 - mlx->infos->wolf->step_y) / 2) / mlx->infos->wolf->dir_ray_y;
+				(1 - mlx->infos->wolf->step_y) / 2) / mlx->infos->wolf->dir_ray_y;
+			mlx->infos->wolf->wall_x = mlx->infos->wolf->pos_x + mlx->infos->wolf->wall_distance *
+				mlx->infos->wolf->dir_ray_x;
+		}
+		mlx->infos->wolf->wall_x -= (int)mlx->infos->wolf->wall_x;
+		mlx->infos->wolf->tex_x = (int)(mlx->infos->wolf->wall_x * (double)64);
+		if ((mlx->infos->wolf->side == 0 && mlx->infos->wolf->dir_ray_x > 0) ||
+			(mlx->infos->wolf->side == 1 && mlx->infos->wolf->dir_ray_y < 0))
+			mlx->infos->wolf->tex_x = 64 - mlx->infos->wolf->tex_x - 1;
 		mlx->infos->wolf->wall_height = (int)(HEIGHT / mlx->infos->wolf->wall_distance);
 		fill_screen(mlx, i);
 	}

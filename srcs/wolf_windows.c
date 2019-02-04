@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf_windows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:18:18 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/01/31 20:14:41 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/04 16:10:00 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@ void			wolf_init_img(t_infoswind *window, t_img *img, void *mlx_ptr)
 	img->data_img = (char *)mlx_get_data_addr(img->mlx_img, 
 			&img->bperpix, &img->size_line, &img->endian);
 	if (!(img->xpm_img = mlx_xpm_file_to_image(mlx_ptr, 
-					"./ressources/Image01.XPM", &window->width, &window->height)))
+		"./ressources/Image01.XPM", &window->width, &window->height)))
 		wolf_err(2);
 	img->data_xpm = (char *)mlx_get_data_addr(img->xpm_img, &img->bperpix, &img->size_line, &img->endian);
+	if (!(img->colorstone = mlx_xpm_file_to_image(mlx_ptr, 
+		"./ressources/redbrick.XPM", &window->size_texture, &window->size_texture)))
+		wolf_err(2);
+	img->data_colorstone = (char *)mlx_get_data_addr(img->colorstone,
+		&img->bperpix, &img->size_line_texture, &img->endian);
 }
 
 void			wolf_graph(t_mlx *mlx)

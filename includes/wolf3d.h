@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/01/31 20:24:51 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/04 14:04:00 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
+#include <stdio.h>
 
 # define WIDTH 1000
 # define HEIGHT 611
@@ -50,6 +51,10 @@ typedef struct	s_wolf
 	int			hit;
 	int			side;
 	int			wall_height;
+	int			nb_text;
+	int			tex_x;
+	int			tex_y;
+	double		wall_x;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -73,18 +78,22 @@ typedef struct	s_wolf
 typedef struct	s_img
 {
 	void		*xpm_img;
+	void		*colorstone;
 	void		*mlx_img;
+	char		*data_colorstone;
 	char		*data_img;
 	char		*data_xpm;
 	int			**map;
 	int			bperpix;
 	int			size_line;
+	int			size_line_texture;
 	int			endian;
 }				t_img;
 
 typedef struct		s_infoswind
 {
 	int				width;
+	int				size_texture;
 	int				height;
 	short			right;
 	short			left;

@@ -6,7 +6,7 @@
 #    By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/31 17:22:25 by oel-ayad          #+#    #+#              #
-#    Updated: 2019/01/31 20:26:05 by oel-ayad         ###   ########.fr        #
+#    Updated: 2019/02/04 15:26:07 by gdrai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 LDFLAGS = -L./libft/
 LFT = -lft
 
-CC = gcc $(CFLAGS)
+CC = gcc $(CFLAGS) -g -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 
 MLX = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit

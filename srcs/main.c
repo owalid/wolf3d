@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:11:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/01/31 19:08:33 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/04 14:04:25 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(int argc, char **argv)
 	{
 		infos->width = WIDTH;
 		infos->height = HEIGHT;
+		infos->size_texture = 64;
 		parsing(wolf, argv[1]);
 		infos->wolf = wolf;
 		wolf_init(infos);
