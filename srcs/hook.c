@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:11:08 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/04 17:20:48 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/04 18:09:46 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		hook_close(t_wolf *wolf)
 	return (0);
 }
 
-int	loop_hook(t_mlx *mlx)
+int		loop_hook(t_mlx *mlx)
 {
 	if (mlx->infos->up)
 		wolf_move_up(mlx);

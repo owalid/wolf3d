@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:12:37 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/04 17:31:06 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/04 18:13:13 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ void	pos_to_map(t_mlx *mlx)
 	if (mlx->infos->wolf->dir_ray_x < 0)
 	{
 		mlx->infos->wolf->step_x = -1;
-		mlx->infos->wolf->pos_to_map_x = (mlx->infos->wolf->pos_x - mlx->infos->wolf->map_x) * mlx->infos->wolf->delta_x;
+		mlx->infos->wolf->pos_to_map_x = (mlx->infos->wolf->pos_x -
+			mlx->infos->wolf->map_x) * mlx->infos->wolf->delta_x;
 	}
 	else
 	{
 		mlx->infos->wolf->step_x = 1;
-		mlx->infos->wolf->pos_to_map_x = (mlx->infos->wolf->map_x + 1.0 - mlx->infos->wolf->pos_x) * mlx->infos->wolf->delta_x;
+		mlx->infos->wolf->pos_to_map_x = (mlx->infos->wolf->map_x + 1.0 -
+			mlx->infos->wolf->pos_x) * mlx->infos->wolf->delta_x;
 	}
 	if (mlx->infos->wolf->dir_ray_y < 0)
 	{
 		mlx->infos->wolf->step_y = -1;
-		mlx->infos->wolf->pos_to_map_y = (mlx->infos->wolf->pos_y - mlx->infos->wolf->map_y) * mlx->infos->wolf->delta_y;
+		mlx->infos->wolf->pos_to_map_y = (mlx->infos->wolf->pos_y -
+			mlx->infos->wolf->map_y) * mlx->infos->wolf->delta_y;
 	}
 	else
 	{
 		mlx->infos->wolf->step_y = 1;
-		mlx->infos->wolf->pos_to_map_y = (mlx->infos->wolf->map_y + 1.0 - mlx->infos->wolf->pos_y) * mlx->infos->wolf->delta_y;
+		mlx->infos->wolf->pos_to_map_y = (mlx->infos->wolf->map_y + 1.0 -
+			mlx->infos->wolf->pos_y) * mlx->infos->wolf->delta_y;
 	}
 }
 
@@ -52,7 +56,8 @@ void	wait_for_hit(t_mlx *mlx)
 			mlx->infos->wolf->map_y += mlx->infos->wolf->step_y;
 			mlx->infos->wolf->side = 1;
 		}
-		mlx->infos->wolf->hit = (mlx->infos->wolf->map[(int)mlx->infos->wolf->map_x][(int)mlx->infos->wolf->map_y] > 0) ? 1 : 0;
+		mlx->infos->wolf->hit = (mlx->infos->wolf->map[(int)mlx->infos->
+			wolf->map_x][(int)mlx->infos->wolf->map_y] > 0) ? 1 : 0;
 	}
 }
 
@@ -63,7 +68,6 @@ void	fill_screen(t_mlx *mlx, int i)
 	int j;
 	int k;
 	int l;
-
 
 	if (HEIGHT - mlx->infos->wolf->wall_height <= 0)
 	{
@@ -142,4 +146,3 @@ void	wolf_calcul(t_mlx *mlx)
 		fill_screen(mlx, i);
 	}
 }
-

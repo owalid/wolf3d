@@ -6,22 +6,17 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/04 17:59:44 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/04 18:09:04 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-////////////////////////
-# include <stdio.h>
-///////////////////////
-
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
-#include <stdio.h>
 
 # define WIDTH 1000
 # define HEIGHT 611
@@ -97,25 +92,25 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
-typedef struct		s_infoswind
+typedef struct	s_infoswind
 {
-	int				width;
-	int				size_texture;
-	int				height;
-	short			right;
-	short			left;
-	short			up;
-	short			down;
-	t_img			*img;
-	t_wolf			*wolf;
+	int			width;
+	int			size_texture;
+	int			height;
+	short		right;
+	short		left;
+	short		up;
+	short		down;
+	t_img		*img;
+	t_wolf		*wolf;
 }				t_infoswind;
 
 typedef struct	s_mlx
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-	void			*xpm_ptr;
-	t_infoswind		*infos;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*xpm_ptr;
+	t_infoswind	*infos;
 }				t_mlx;
 
 /*
