@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/04 14:04:00 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/04 17:59:44 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define LEFT_KEY 123
 # define RIGHT_KEY 124
 # define MO 0.4
-# define RO 0.25
+# define RO 0.15
 # define EXIT "wolf3d: finish"
 # define ERR_MAP "Error: incorrect map"
 # define ERR_MLX "Error: error mlx"
@@ -79,8 +79,15 @@ typedef struct	s_img
 {
 	void		*xpm_img;
 	void		*colorstone;
+	void		*wood;
+	void		*redbrick;
+	void		*mossy;
+	void		*alae;
+	void		*purplestone;
+	void		*eagle;
+	void		*bluestone;
 	void		*mlx_img;
-	char		*data_colorstone;
+	char		**data_texture;
 	char		*data_img;
 	char		*data_xpm;
 	int			**map;
@@ -125,8 +132,9 @@ void			wolf_init(t_infoswind *infos);
 /*
 **	wolf_windows.c
 */
-void			wolf_wind_init(t_infoswind *infos);
+void			wolf_wind_init(t_mlx *mlx);
 void			wolf_graph(t_mlx *mlx);
+void			wolf_init_img(t_infoswind *window, t_img *img, void *mlx_ptr);
 
 /*
 **	wolf_calc.c

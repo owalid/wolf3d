@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:12:37 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/04 15:55:06 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/04 17:31:06 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	fill_screen(t_mlx *mlx, int i)
 	int k;
 	int l;
 
+
 	if (HEIGHT - mlx->infos->wolf->wall_height <= 0)
 	{
 		start = -1;
@@ -82,15 +83,17 @@ void	fill_screen(t_mlx *mlx, int i)
 		l = 4 * (mlx->infos->wolf->tex_x * 64 + mlx->infos->wolf->tex_y);
 		if (j >= 0 && j < 2439998 && l >= 0 && l < 16382)
 		{
-			mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_colorstone[l];
-			mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_colorstone[l + 1];
-			mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_colorstone[l + 2];
+			mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l];
+			mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l + 1];
+			mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l + 2];
 		}
 	}
 	while (++end < HEIGHT)
 	{
-		j = 4 * (end * WIDTH + i) + 1;
-		mlx->infos->img->data_img[j] = (char)80;
+		j = 4 * (end * WIDTH + i);
+		mlx->infos->img->data_img[j++] = (char)0;
+		mlx->infos->img->data_img[j++] = (char)80;
+		mlx->infos->img->data_img[j] = (char)0;
 		j = 4 * ((HEIGHT - end) * WIDTH + i);
 		mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_xpm[j];
 		mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_xpm[j + 1];

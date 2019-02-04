@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:03:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/01/31 19:11:42 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/04 17:51:28 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		fill_map(t_wolf *wolf)
 	{
 		k = 0;
 		if (!(map[i] = (int*)malloc(sizeof(int) * wolf->map_width)))
-		wolf_err(3);
+			wolf_err(3);
 		while (wolf->str[j] != '\n' && wolf->str[j])
 			map[i][k++] = wolf->str[j++] - '0';
 		j++;
