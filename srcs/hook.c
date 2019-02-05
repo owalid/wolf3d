@@ -18,6 +18,8 @@ int		key_press(int key, t_mlx *mlx)
 		mlx->infos->right = 1;
 	else if (key == LEFT_KEY || key == A)
 		mlx->infos->left = 1;
+	else if (key == LEFT_SHIFT)
+		mlx->infos->sprint = 1;
 	else if (key == UP_KEY || key == W)
 		mlx->infos->up = 1;
 	else if (key == DOWN_KEY || key == S)
@@ -31,6 +33,8 @@ int		key_release(int key, t_mlx *mlx)
 		mlx->infos->put_mini_map = (mlx->infos->put_mini_map) ? 0 : 1;
 	if (key == ESCAPE_KEY)
 		wolf_exit(0);
+	if (key == LEFT_SHIFT)
+		mlx->infos->sprint = 0;
 	if (key == RIGHT_KEY || key == D)
 		mlx->infos->right = 0;
 	else if (key == LEFT_KEY || key == A)
@@ -52,7 +56,12 @@ int		hook_close(t_wolf *wolf)
 int		loop_hook(t_mlx *mlx)
 {
 	if (mlx->infos->up)
-		wolf_move_up(mlx);
+	{
+		if (mlx->infos->sprint)
+			wolf_move_sprint(mlx);
+		else
+			wolf_move_up(mlx);
+	}
 	if (mlx->infos->down)
 		wolf_move_down(mlx);
 	if (mlx->infos->right)
