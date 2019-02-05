@@ -24,6 +24,7 @@ void		wolf_err(int id)
 		ft_putendl_fd(ERR_USAGE, 2);
 	else if (id == 5)
 		ft_putendl_fd(ERR_OPCL, 2);
+	system("killall afplay");
 	exit(id);
 }
 
@@ -31,5 +32,6 @@ void		wolf_exit(int id)
 {
 	if (id == 0)
 		ft_putendl(EXIT);
+	system("killall afplay");
 	exit(id);
 }
