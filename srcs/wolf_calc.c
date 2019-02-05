@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:12:37 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/04 18:13:13 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/05 16:13:20 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	fill_screen(t_mlx *mlx, int i)
 		mlx->infos->wolf->tex_y = ((k * 64) / mlx->infos->wolf->wall_height) / 256;
 		j = 4 * (start * WIDTH + i);
 		l = 4 * (mlx->infos->wolf->tex_x * 64 + mlx->infos->wolf->tex_y);
-		if (j >= 0 && j < 2439998 && l >= 0 && l < 16382)
+		if (j >= 0 && j < WIDTH * HEIGHT * 4 - 2 && l >= 0 && l < 16382)
 		{
 			mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l];
 			mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l + 1];

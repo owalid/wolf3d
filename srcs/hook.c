@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:11:08 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/05 12:21:43 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/05 13:48:05 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		key_press(int key, t_mlx *mlx)
 
 int		key_release(int key, t_mlx *mlx)
 {
+	if (key == SPACE_KEY)
+		mlx->infos->put_mini_map = (mlx->infos->put_mini_map) ? 0 : 1;
 	if (key == ESCAPE_KEY)
 		wolf_exit(0);
 	if (key == RIGHT_KEY || key == D)

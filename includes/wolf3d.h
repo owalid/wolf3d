@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/05 12:20:56 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/05 16:19:20 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <stdlib.h>
 # include <math.h>
 #include <stdio.h>
-# define WIDTH 1000
-# define HEIGHT 611
+# define WIDTH 1920
+# define HEIGHT 1080
 # define ESCAPE_KEY 53
+# define SPACE_KEY 49
 # define UP_KEY 126
 # define W 13
 # define DOWN_KEY 125
@@ -29,8 +30,8 @@
 # define A 0
 # define RIGHT_KEY 124
 # define D 2
-# define MO 0.15
-# define RO 0.05
+# define MO 0.25
+# define RO 0.10
 # define EXIT "wolf3d: finish"
 # define ERR_MAP "Error: incorrect map"
 # define ERR_MLX "Error: error mlx"
@@ -86,6 +87,8 @@ typedef struct	s_img
 	void		*eagle;
 	void		*bluestone;
 	void		*mlx_img;
+	void		*mini_map;
+	char		*data_mini_map;
 	char		**data_texture;
 	char		*data_img;
 	char		*data_xpm;
@@ -93,6 +96,7 @@ typedef struct	s_img
 	int			bperpix;
 	int			size_line;
 	int			size_line_texture;
+	int			size_line_mini_map;
 	int			endian;
 }				t_img;
 
@@ -100,6 +104,8 @@ typedef struct	s_infoswind
 {
 	int			width;
 	int			size_texture;
+	int			size_mini_map;
+	int			put_mini_map;
 	int			height;
 	short		right;
 	short		left;
@@ -141,6 +147,12 @@ void			wolf_init_img(t_infoswind *window, t_img *img, void *mlx_ptr);
 void			wolf_calcul(t_mlx *mlx);
 void			wait_for_hit(t_mlx *mlx);
 void			pos_to_map(t_mlx *mlx);
+
+/*
+**	mini_map_calcul.c
+*/
+
+void			mini_map_calcul(t_mlx *mlx);
 
 /*
 **	hook.c
