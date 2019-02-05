@@ -40,6 +40,18 @@ void			wolf_move_right(t_mlx *mlx)
 		sinf(-RO) + mlx->infos->wolf->plane_y * cosf(-RO);
 }
 
+void			wolf_move_sprint(t_mlx *mlx)
+{
+	if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x + (MO + 0.10)
+				* mlx->infos->wolf->dir_x)]
+			[(int)mlx->infos->wolf->pos_y] == 0)
+		mlx->infos->wolf->pos_x += (MO + 0.10) * mlx->infos->wolf->dir_x;
+	if (mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x]
+			[(int)(mlx->infos->wolf->pos_y + MO
+				* mlx->infos->wolf->dir_y)] == 0)
+		mlx->infos->wolf->pos_y += (MO + 0.10) * mlx->infos->wolf->dir_y;
+}
+
 void			wolf_move_up(t_mlx *mlx)
 {
 	if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x + MO

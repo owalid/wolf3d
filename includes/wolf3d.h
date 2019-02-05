@@ -30,7 +30,8 @@
 # define A 0
 # define RIGHT_KEY 124
 # define D 2
-# define MO 0.25
+# define LEFT_SHIFT 257
+# define MO 0.05
 # define RO 0.10
 # define EXIT "wolf3d: finish"
 # define ERR_MAP "Error: incorrect map"
@@ -103,10 +104,11 @@ typedef struct	s_img
 typedef struct	s_infoswind
 {
 	int			width;
+	int			height;
 	int			size_texture;
 	int			size_mini_map;
 	int			put_mini_map;
-	int			height;
+	short		sprint;
 	short		right;
 	short		left;
 	short		up;
@@ -175,5 +177,6 @@ void			wolf_move_left(t_mlx *mlx);
 void			wolf_move_right(t_mlx *mlx);
 void			wolf_move_up(t_mlx *mlx);
 void			wolf_move_down(t_mlx *mlx);
+void			wolf_move_sprint(t_mlx *mlx);
 
 #endif
