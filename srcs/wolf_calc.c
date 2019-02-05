@@ -85,7 +85,34 @@ void	fill_screen(t_mlx *mlx, int i)
 		mlx->infos->wolf->tex_y = ((k * 64) / mlx->infos->wolf->wall_height) / 256;
 		j = 4 * (start * WIDTH + i);
 		l = 4 * (mlx->infos->wolf->tex_x * 64 + mlx->infos->wolf->tex_y);
-		if (j >= 0 && j < WIDTH * HEIGHT * 4 - 2 && l >= 0 && l < 16382)
+		if (mlx->infos->wolf->nb_text == 9)
+		{
+			if (mlx->infos->wolf->side == 0 && mlx->infos->wolf->dir_ray_x > 0)
+			{
+				mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[8][l];
+				mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[8][l + 1];
+				mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_texture[8][l + 2];
+			}
+			else if (mlx->infos->wolf->side == 0 && mlx->infos->wolf->dir_ray_x < 0)
+			{
+				mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[1][l];
+				mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[1][l + 1];
+				mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_texture[1][l + 2];
+			}
+			else if (mlx->infos->wolf->side == 1 && mlx->infos->wolf->dir_ray_y > 0)
+			{
+				mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[2][l];
+				mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[2][l + 1];
+				mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_texture[2][l + 2];
+			}
+			else
+			{
+				mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[3][l];
+				mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[3][l + 1];
+				mlx->infos->img->data_img[j + 2] = (unsigned int)mlx->infos->img->data_texture[3][l + 2];
+			}
+		}
+		else if (j >= 0 && j < WIDTH * HEIGHT * 4 - 2 && l >= 0 && l < 16382)
 		{
 			mlx->infos->img->data_img[j] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l];
 			mlx->infos->img->data_img[j + 1] = (unsigned int)mlx->infos->img->data_texture[mlx->infos->wolf->nb_text - 1][l + 1];
@@ -139,9 +166,9 @@ void	wolf_calcul(t_mlx *mlx)
 		}
 		mlx->infos->wolf->wall_x -= (int)mlx->infos->wolf->wall_x;
 		mlx->infos->wolf->tex_x = (int)(mlx->infos->wolf->wall_x * (double)64);
-		if ((mlx->infos->wolf->side == 0 && mlx->infos->wolf->dir_ray_x > 0) ||
+		/*if ((mlx->infos->wolf->side == 0 && mlx->infos->wolf->dir_ray_x > 0) ||
 			(mlx->infos->wolf->side == 1 && mlx->infos->wolf->dir_ray_y < 0))
-			mlx->infos->wolf->tex_x = 64 - mlx->infos->wolf->tex_x - 1;
+			mlx->infos->wolf->tex_x = 64 - mlx->infos->wolf->tex_x - 1;*/
 		mlx->infos->wolf->wall_height = (int)(HEIGHT / mlx->infos->wolf->wall_distance);
 		fill_screen(mlx, i);
 	}
