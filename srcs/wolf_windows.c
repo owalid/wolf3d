@@ -68,7 +68,7 @@ void			wolf_init_img(t_infoswind *window, t_img *img, void *mlx_ptr)
 	if (!(img->eagle = mlx_xpm_file_to_image(mlx_ptr, 
 		"./ressources/eagle.XPM", &window->size_texture, &window->size_texture)))
 		wolf_err(2);
-	img->data_texture[6] = (char *)mlx_get_data_addr(img->redbrick,
+	img->data_texture[6] = (char *)mlx_get_data_addr(img->eagle,
 		&img->bperpix, &img->size_line_texture, &img->endian);
 	if (!(img->alae = mlx_xpm_file_to_image(mlx_ptr, 
 		"./ressources/alae.XPM", &window->size_texture, &window->size_texture)))
