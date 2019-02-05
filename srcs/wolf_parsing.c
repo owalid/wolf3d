@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:03:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/04 17:51:28 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/05 12:22:52 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	check_map(t_wolf *wolf)
 	int i;
 
 	i = 0;
-	if (wolf->map[2][2])
+	if (wolf->map[1][1])
 		wolf_err(1);
 	while (i < wolf->map_width)
 	{

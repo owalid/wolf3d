@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/04 18:09:04 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/05 12:20:56 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
-
+#include <stdio.h>
 # define WIDTH 1000
 # define HEIGHT 611
 # define ESCAPE_KEY 53
 # define UP_KEY 126
+# define W 13
 # define DOWN_KEY 125
+# define S 1
 # define LEFT_KEY 123
+# define A 0
 # define RIGHT_KEY 124
-# define MO 0.4
-# define RO 0.15
+# define D 2
+# define MO 0.15
+# define RO 0.05
 # define EXIT "wolf3d: finish"
 # define ERR_MAP "Error: incorrect map"
 # define ERR_MLX "Error: error mlx"
@@ -135,12 +139,14 @@ void			wolf_init_img(t_infoswind *window, t_img *img, void *mlx_ptr);
 **	wolf_calc.c
 */
 void			wolf_calcul(t_mlx *mlx);
+void			wait_for_hit(t_mlx *mlx);
+void			pos_to_map(t_mlx *mlx);
 
 /*
-**	wolf_deal.c
+**	hook.c
 */
 int				hook_close(t_wolf *wolf);
-int				deal_mouse(int mouse, int x, int y, t_wolf *wolf);
+int				deal_mouse(int mouse, int x, int y, t_mlx *mlx);
 int				key_press(int key, t_mlx *mlx);
 int				key_release(int key, t_mlx *mlx);
 int				loop_hook(t_mlx *mlx);

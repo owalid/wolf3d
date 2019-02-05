@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 16:18:18 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/04 18:00:08 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/05 11:50:56 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void			wolf_wind_init(t_mlx *mlx)
 	wolf_graph(mlx);
 	mlx_hook(mlx->win_ptr, 2, (1L << 0), key_press, mlx);
 	mlx_hook(mlx->win_ptr, 3, (1L << 1), key_release, mlx);
+	mlx_mouse_hook(mlx->win_ptr, deal_mouse, mlx);
 	mlx_hook(mlx->win_ptr, 17, 1L << 0, hook_close, mlx);
 	mlx_loop_hook(mlx->mlx_ptr, loop_hook, mlx);
 	mlx_loop(mlx->mlx_ptr);
