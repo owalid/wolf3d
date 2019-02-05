@@ -31,7 +31,7 @@
 # define RIGHT_KEY 124
 # define D 2
 # define LEFT_SHIFT 257
-# define MO 0.05
+# define MO 0.15
 # define RO 0.10
 # define EXIT "wolf3d: finish"
 # define ERR_MAP "Error: incorrect map"
