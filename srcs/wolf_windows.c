@@ -92,6 +92,7 @@ void			wolf_graph(t_mlx *mlx)
 
 void			wolf_wind_init(t_mlx *mlx)
 {
+	system("afplay sound/ameno.mp3&");
 	wolf_graph(mlx);
 	mlx_hook(mlx->win_ptr, 2, (1L << 0), key_press, mlx);
 	mlx_hook(mlx->win_ptr, 3, (1L << 1), key_release, mlx);
