@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 13:50:12 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/05 16:05:05 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/06 10:39:06 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	fill_square(t_mlx *mlx, int x, int y, int color)
 {
-	int i = -1;
+	int i;
 	int j;
 
+	i = -1;
 	while (++i < 10)
 	{
 		j = -1;
@@ -39,20 +40,22 @@ void	mini_map_calcul_bis(t_mlx *mlx, int i, int j)
 	if ((int)mlx->infos->wolf->pos_x - i >= 0 && (int)mlx->infos->wolf->pos_y
 		- j >= 0 && mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x - i]
 			[(int)mlx->infos->wolf->pos_y - j] != 0)
-				fill_square(mlx, 10 - i, 10 - j, 0);
+		fill_square(mlx, 10 - i, 10 - j, 0);
 	if ((int)mlx->infos->wolf->pos_x + i <= mlx->infos->wolf->map_height - 1
 		&& (int)mlx->infos->wolf->pos_y - j >= 0 && mlx->infos->wolf->map
-			[(int)mlx->infos->wolf->pos_x + i][(int)mlx->infos->wolf->pos_y - j] != 0)
-				fill_square(mlx, 10 + i, 10 - j, 0);
+			[(int)mlx->infos->wolf->pos_x + i][(int)mlx->infos->wolf->pos_y - j]
+				!= 0)
+		fill_square(mlx, 10 + i, 10 - j, 0);
 	if ((int)mlx->infos->wolf->pos_x - i >= 0 && (int)mlx->infos->wolf->pos_y
 		+ j <= mlx->infos->wolf->map_width - 1 && mlx->infos->wolf->map
-			[(int)mlx->infos->wolf->pos_x - i][(int)mlx->infos->wolf->pos_y + j] != 0)
-				fill_square(mlx, 10 - i, 10 + j, 0);
+			[(int)mlx->infos->wolf->pos_x - i][(int)mlx->infos->wolf->pos_y + j]
+				!= 0)
+		fill_square(mlx, 10 - i, 10 + j, 0);
 	if ((int)mlx->infos->wolf->pos_x + i <= mlx->infos->wolf->map_height - 1
 		&& (int)mlx->infos->wolf->pos_y + j <= mlx->infos->wolf->map_width - 1
 			&& mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x + i]
 				[(int)mlx->infos->wolf->pos_y + j] != 0)
-					fill_square(mlx, 10 + i, 10 + j, 0);
+		fill_square(mlx, 10 + i, 10 + j, 0);
 }
 
 void	mini_map_calcul(t_mlx *mlx)

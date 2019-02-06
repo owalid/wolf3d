@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/05 16:19:20 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/06 11:11:10 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
-#include <stdio.h>
+
 # define WIDTH 1920
 # define HEIGHT 1080
 # define ESCAPE_KEY 53
@@ -160,10 +160,19 @@ void			mini_map_calcul(t_mlx *mlx);
 **	hook.c
 */
 int				hook_close(t_wolf *wolf);
-int				deal_mouse(int mouse, int x, int y, t_mlx *mlx);
 int				key_press(int key, t_mlx *mlx);
 int				key_release(int key, t_mlx *mlx);
 int				loop_hook(t_mlx *mlx);
+
+/*
+**	fill.c
+*/
+void			fill_screen(t_mlx *mlx, int i);
+
+/*
+**  deal_mouse.c
+*/
+int				deal_mouse(int mouse, int x, int y, t_mlx *mlx);
 
 /*
 **	wolf_parsing.c

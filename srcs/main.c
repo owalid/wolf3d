@@ -6,11 +6,19 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:11:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/05 13:54:35 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/06 11:14:19 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	info_init(t_infoswind *infos)
+{
+	infos->width = WIDTH;
+	infos->height = HEIGHT;
+	infos->size_texture = 64;
+	infos->size_mini_map = 210;
+}
 
 int		main(int argc, char **argv)
 {
@@ -21,16 +29,14 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		infos->width = WIDTH;
-		infos->height = HEIGHT;
-		infos->size_texture = 64;
-		infos->size_mini_map = 210;
+		info_init(infos);
 		parsing(wolf, argv[1]);
 		infos->wolf = wolf;
 		wolf_init(infos);
 		if (!(mlx->mlx_ptr = mlx_init()))
 			wolf_err(2);
-		if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, infos->width, infos->height, "wolf3d")))
+		if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
+			infos->width, infos->height, "wolf3d")))
 			wolf_err(2);
 		wolf_init_img(infos, img, mlx->mlx_ptr);
 		infos->img = img;

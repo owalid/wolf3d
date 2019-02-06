@@ -6,7 +6,7 @@
 #    By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/31 17:22:25 by oel-ayad          #+#    #+#              #
-#    Updated: 2019/02/05 13:51:04 by gdrai            ###   ########.fr        #
+#    Updated: 2019/02/06 11:10:31 by gdrai            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC_NAME = main.c \
 			wolf_parsing.c \
 			wolf_move.c \
 			mini_map_calcul.c \
+			deal_mouse.c \
+			fill.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

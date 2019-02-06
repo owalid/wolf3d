@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:03:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/05 12:22:52 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/06 10:37:15 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,21 @@ void	check_parsing(t_wolf *wolf)
 		wolf_err(1);
 }
 
-void		fill_map(t_wolf *wolf)
+void	fill_map(t_wolf *wolf)
 {
 	int i;
 	int k;
 	int j;
 	int	**map;
 
-	if (!(map = (int**)malloc(sizeof(int*) * wolf->map_height)))
+	if (!(map = (int **)malloc(sizeof(int *) * wolf->map_height)))
 		wolf_err(3);
 	i = 0;
 	j = 0;
 	while (i < wolf->map_height)
 	{
 		k = 0;
-		if (!(map[i] = (int*)malloc(sizeof(int) * wolf->map_width)))
+		if (!(map[i] = (int *)malloc(sizeof(int) * wolf->map_width)))
 			wolf_err(3);
 		while (wolf->str[j] != '\n' && wolf->str[j])
 			map[i][k++] = wolf->str[j++] - '0';
@@ -87,7 +87,7 @@ void	parsing(t_wolf *wolf, char *argv)
 	int		fd;
 	char	*line;
 	int		i;
-	
+
 	if (!(fd = open(argv, O_RDONLY)))
 		wolf_err(5);
 	wolf->str = ft_strdup("\0");
