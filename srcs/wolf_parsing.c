@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:03:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/06 17:07:45 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:35:00 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	parsing(t_wolf *wolf, char *argv)
 	char	*line;
 	int		i;
 
-	if (!(fd = open(argv, O_RDONLY, O_NONBLOCK)))
+	if (!(fd = open(argv, O_RDONLY, O_NOFOLLOW, O_TRUNC)))
 		wolf_err(5);
 	wolf->str = ft_strdup("\0");
 	while (get_next_line(fd, &line) == 1)
