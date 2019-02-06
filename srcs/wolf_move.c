@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 20:15:22 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/01/31 20:21:50 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/06 12:40:20 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,25 @@ void			wolf_move_right(t_mlx *mlx)
 
 void			wolf_move_sprint(t_mlx *mlx)
 {
-	if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x + (MO + 0.10)
-				* mlx->infos->wolf->dir_x)]
+	if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x
+		+ MO * 2 * mlx->infos->wolf->dir_x)]
 			[(int)mlx->infos->wolf->pos_y] == 0)
-		mlx->infos->wolf->pos_x += (MO + 0.10) * mlx->infos->wolf->dir_x;
+		mlx->infos->wolf->pos_x += MO * 2 * mlx->infos->wolf->dir_x;
 	if (mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x]
-			[(int)(mlx->infos->wolf->pos_y + MO
-				* mlx->infos->wolf->dir_y)] == 0)
-		mlx->infos->wolf->pos_y += (MO + 0.10) * mlx->infos->wolf->dir_y;
+		[(int)(mlx->infos->wolf->pos_y + MO
+			* 2 * mlx->infos->wolf->dir_y)] == 0)
+		mlx->infos->wolf->pos_y += MO * 2 * mlx->infos->wolf->dir_y;
 }
 
 void			wolf_move_up(t_mlx *mlx)
 {
-	if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x + MO
-				* mlx->infos->wolf->dir_x)]
+	if (mlx->infos->wolf->map[(int)(mlx->infos->wolf->pos_x
+		+ MO * mlx->infos->wolf->dir_x)]
 			[(int)mlx->infos->wolf->pos_y] == 0)
 		mlx->infos->wolf->pos_x += MO * mlx->infos->wolf->dir_x;
 	if (mlx->infos->wolf->map[(int)mlx->infos->wolf->pos_x]
-			[(int)(mlx->infos->wolf->pos_y + MO
-				* mlx->infos->wolf->dir_y)] == 0)
+		[(int)(mlx->infos->wolf->pos_y + MO
+			* mlx->infos->wolf->dir_y)] == 0)
 		mlx->infos->wolf->pos_y += MO * mlx->infos->wolf->dir_y;
 }
 
