@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 10:11:17 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/06 11:14:19 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/06 17:06:55 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ void	info_init(t_infoswind *infos)
 	infos->size_mini_map = 210;
 }
 
+void	wolf_verif_ext(char *file)
+{
+	int		i;
+
+	i = ft_strlen(file) - 4;
+	if (i <= 0 || ft_strcmp(file + i, ".w3d"))
+		wolf_err(1);
+}
+
 int		main(int argc, char **argv)
 {
 	t_infoswind		infos[1];
@@ -29,6 +38,7 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 	{
+		wolf_verif_ext(argv[1]);
 		info_init(infos);
 		parsing(wolf, argv[1]);
 		infos->wolf = wolf;
