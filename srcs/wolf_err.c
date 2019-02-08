@@ -6,7 +6,7 @@
 /*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 15:41:21 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/01/31 19:13:19 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:08:52 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void		wolf_err(int id)
 		ft_putendl_fd(ERR_USAGE, 2);
 	else if (id == 5)
 		ft_putendl_fd(ERR_OPCL, 2);
-	system("killall afplay");
 	exit(id);
 }
 

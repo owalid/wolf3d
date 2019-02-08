@@ -6,7 +6,11 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:11:15 by gdrai             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/02/08 12:43:03 by gdrai            ###   ########.fr       */
+=======
+/*   Updated: 2019/02/06 17:03:05 by oel-ayad         ###   ########.fr       */
+>>>>>>> eca1bd898d93ac75003d9683e336e4971b5a35df
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +96,10 @@ void	fill_screen(t_mlx *mlx, int i)
 	double end;
 	int j;
 
-	start = (HEIGHT - mlx->infos->wolf->wall_height <= 0) ? -1 :
-		(HEIGHT - mlx->infos->wolf->wall_height) / 2 - 1;
-	end = (HEIGHT - mlx->infos->wolf->wall_height <= 0) ? HEIGHT - 1 :
-		HEIGHT - start - 1;
+	start = (HEIGHT - mlx->infos->wolf->wall_height <= 0) ? -1
+		: (HEIGHT - mlx->infos->wolf->wall_height) / 2 - 1;
+	end = (HEIGHT - mlx->infos->wolf->wall_height <= 0) ? HEIGHT - 1
+		: HEIGHT - start - 1;
 	fill_wall(mlx, start, end, i);
 	while (++end < HEIGHT)
 	{
