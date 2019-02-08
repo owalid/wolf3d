@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:11:15 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/06 11:11:49 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/08 12:43:03 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,16 @@ void	fill_special_texture(t_mlx *mlx, int j, int l)
 		fill_special_texture_bis(mlx, j, l);
 }
 
-void	fill_wall(t_mlx *mlx, int start, int end, int i)
+void	fill_wall(t_mlx *mlx, double start, double end, int i)
 {
 	int j;
-	int k;
 	int l;
 
 	while (++start <= end)
 	{
-		k = start * 256 - HEIGHT * 128 + mlx->infos->wolf->wall_height * 128;
-		mlx->infos->wolf->tex_y = ((k * 64) / mlx->infos->wolf->wall_height)
-			/ 256;
+		mlx->infos->wolf->tex_y = (((start - (HEIGHT
+			+ mlx->infos->wolf->wall_height) / 2) * 64)
+				/ mlx->infos->wolf->wall_height);
 		j = 4 * (start * WIDTH + i);
 		l = 4 * (mlx->infos->wolf->tex_x * 64 + mlx->infos->wolf->tex_y);
 		if (mlx->infos->wolf->nb_text == 9)
@@ -89,8 +88,8 @@ void	fill_wall(t_mlx *mlx, int start, int end, int i)
 
 void	fill_screen(t_mlx *mlx, int i)
 {
-	int start;
-	int end;
+	double start;
+	double end;
 	int j;
 
 	start = (HEIGHT - mlx->infos->wolf->wall_height <= 0) ? -1 :
