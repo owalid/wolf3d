@@ -6,11 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:11:15 by gdrai             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/02/08 12:43:03 by gdrai            ###   ########.fr       */
-=======
-/*   Updated: 2019/02/06 17:03:05 by oel-ayad         ###   ########.fr       */
->>>>>>> eca1bd898d93ac75003d9683e336e4971b5a35df
+/*   Updated: 2019/02/14 12:11:34 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +88,9 @@ void	fill_wall(t_mlx *mlx, double start, double end, int i)
 
 void	fill_screen(t_mlx *mlx, int i)
 {
-	double start;
-	double end;
-	int j;
+	double	start;
+	double	end;
+	int		j;
 
 	start = (HEIGHT - mlx->infos->wolf->wall_height <= 0) ? -1
 		: (HEIGHT - mlx->infos->wolf->wall_height) / 2 - 1;
