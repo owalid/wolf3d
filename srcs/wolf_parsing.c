@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:03:59 by oel-ayad          #+#    #+#             */
-/*   Updated: 2019/02/14 12:17:14 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/14 15:26:57 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	check_parsing(t_wolf *wolf)
 			wolf_err(1);
 		i++;
 		wolf->map_height++;
+		if (wolf->map_height > 30)
+			wolf_err(1);
 	}
 	if (wolf->map_height < 3 || wolf->map_width < 3)
 		wolf_err(1);
@@ -88,23 +90,22 @@ void	parsing(t_wolf *wolf, char *argv)
 	char	*line;
 	int		i;
 
-	if (!(fd = open(argv, O_RDONLY, O_NOFOLLOW)))
+	if (!(fd = open(argv, O_RDONLY | O_NOFOLLOW)))
 		wolf_err(5);
-	wolf->str = ft_strdup("\0");
+	if (!(wolf->str = ft_strdup("\0")))
+		wolf_err(3);
 	while (get_next_line(fd, &line) == 1)
 	{
-		wolf->str = ft_strjoin_free(wolf->str, line);
+		if (!(wolf->str = ft_strjoin_free(wolf->str, line)))
+			wolf_err(3);
 		ft_strdel(&line);
 	}
 	if ((close(fd) == -1))
 		wolf_err(5);
-	i = 0;
-	while (wolf->str[i])
-	{
+	i = -1;
+	while (wolf->str[++i])
 		if (!ft_isdigit(wolf->str[i]) && wolf->str[i] != '\n')
 			wolf_err(1);
-		i++;
-	}
 	check_parsing(wolf);
 	fill_map(wolf);
 	check_map(wolf);

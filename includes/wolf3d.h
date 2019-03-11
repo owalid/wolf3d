@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 16:19:38 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/06 17:07:39 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/14 15:42:16 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
+# include <fcntl.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080

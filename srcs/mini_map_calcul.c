@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 13:50:12 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/06 17:02:30 by oel-ayad         ###   ########.fr       */
+/*   Updated: 2019/02/14 16:33:10 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	fill_square(t_mlx *mlx, int x, int y, int color)
 			else
 				mlx->infos->img->data_mini_map[4 * (y * 2100 + i * 210
 					+ x * 10 + j) + 2] = (char)255;
+			mlx->infos->img->data_mini_map[4 * (y * 2100 + i * 210
+					+ x * 10 + j) + 3] = (char)0;
 		}
 	}
 }
@@ -66,9 +68,10 @@ void	mini_map_calcul(t_mlx *mlx)
 	i = -1;
 	while (++i < 44100)
 	{
-		mlx->infos->img->data_mini_map[i * 4] = (char)255;
+		mlx->infos->img->data_mini_map[i * 4] = (char)0;
 		mlx->infos->img->data_mini_map[i * 4 + 1] = (char)0;
 		mlx->infos->img->data_mini_map[i * 4 + 2] = (char)0;
+		mlx->infos->img->data_mini_map[i * 4 + 3] = (char)120;
 	}
 	fill_square(mlx, 10, 10, 1);
 	i = -1;

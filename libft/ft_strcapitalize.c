@@ -3,27 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 10:07:04 by glavigno          #+#    #+#             */
-/*   Updated: 2018/08/08 00:38:41 by glavigno         ###   ########.fr       */
+/*   Created: 2018/08/07 13:52:21 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/14 15:02:32 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+static int			ft_is_alpha_and_numeric(char *str, int i)
+{
+	if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')
+			|| (str[i] >= '0' && str[i] <= '9'))
+		return (1);
+	return (0);
+}
 
-char	*ft_strcapitalize(char *str)
+char				*ft_strcapitalize(char *str)
 {
 	int		i;
-	int		empty;
+	char	*result;
 
-	i = -1;
-	empty = 0;
-	while (str[++i])
+	i = 0;
+	result = str;
+	while (result[i] != '\0')
 	{
-		(!empty && ft_ismin(str[i])) ? str[i] -= 32 : 0;
-		(empty && ft_ismaj(str[i])) ? str[i] += 32 : 0;
-		empty = (!ft_isalpha(str[i]) && !ft_isdigit(str[i])) ? 0 : 1;
+		if (i == 0 || ft_is_alpha_and_numeric(result, i - 1) == 0)
+		{
+			if (result[i] >= 'a' && result[i] <= 'z')
+				result[i] -= 32;
+		}
+		else if (result[i] >= 'A' && result[i] <= 'Z')
+			result[i] += 32;
+		i++;
 	}
-	return (str);
+	return (result);
 }

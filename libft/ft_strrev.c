@@ -3,32 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/02 08:00:41 by glavigno          #+#    #+#             */
-/*   Updated: 2019/01/03 10:27:00 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/14 14:54:11 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/14 15:02:17 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrev(char *str)
+static void		ft_swap_char(char *a, char *b)
 {
-	unsigned int	u;
-	unsigned int	v;
-	char			c;
+	char temp;
 
-	if (!str || !*str)
-		return (str);
-	u = (unsigned int)ft_strlen(str) - 1;
-	v = 0;
-	while (v < u)
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+char			*ft_strrev(char *str)
+{
+	char	*result;
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
+	result = str;
+	while (result[len])
 	{
-		c = str[v];
-		str[v] = str[u];
-		str[u] = c;
-		++v;
-		--u;
+		len++;
 	}
-	return (str);
+	while (i < (len / 2))
+	{
+		ft_swap_char(result + i, result + len - i - 1);
+		i++;
+	}
+	return (result);
 }

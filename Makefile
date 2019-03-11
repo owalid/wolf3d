@@ -6,7 +6,7 @@
 #    By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/31 17:22:25 by oel-ayad          #+#    #+#              #
-#    Updated: 2019/02/06 11:10:31 by gdrai            ###   ########.fr        #
+#    Updated: 2019/02/14 13:54:17 by oel-ayad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ $(NAME): $(OBJ)
 	make -C./minilibx_macos/
 	$(CC) $(LDFLAGS) $(LFT) $(OBJ) -o $@ $(MLX)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c ./includes/wolf3d.h
 	mkdir $(OBJ_PATH) 2> /dev/null || true
 	$(CC) $(CPPFLAGS) -o $@ -c $<
 

@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 18:31:06 by glavigno          #+#    #+#             */
-/*   Updated: 2018/11/07 10:40:46 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/08 16:20:26 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/15 15:58:12 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
+char	*ft_strnstr(const char *str, const char *tofind, size_t n)
 {
-	size_t	n_length;
+	size_t	i;
 
+	i = 0;
 	if (!n)
 		return (NULL);
-	if (!*needle)
-		return ((char*)haystack);
-	n_length = ft_strlen(needle);
-	while (*haystack && n-- >= n_length)
+	if (!tofind[i])
+		return ((char*)str);
+	i = ft_strlen(tofind);
+	while (*str && n-- >= i)
 	{
-		if (!ft_strncmp(haystack, needle, n_length))
-			return ((char*)haystack);
-		++haystack;
+		if (!ft_strncmp(str, tofind, i))
+			return ((char*)str);
+		str++;
 	}
 	return (NULL);
 }

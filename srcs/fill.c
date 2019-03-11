@@ -6,7 +6,7 @@
 /*   By: gdrai <gdrai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 11:11:15 by gdrai             #+#    #+#             */
-/*   Updated: 2019/02/14 12:11:34 by gdrai            ###   ########.fr       */
+/*   Updated: 2019/02/14 14:24:13 by gdrai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,8 @@ void	fill_wall(t_mlx *mlx, double start, double end, int i)
 
 	while (++start <= end)
 	{
-		mlx->infos->wolf->tex_y = (((start - (HEIGHT
-			+ mlx->infos->wolf->wall_height) / 2) * 64)
-				/ mlx->infos->wolf->wall_height);
+		mlx->infos->wolf->tex_y = (((start + (mlx->infos->wolf->wall_height
+			- HEIGHT) / 2) * 64) / mlx->infos->wolf->wall_height);
 		j = 4 * (start * WIDTH + i);
 		l = 4 * (mlx->infos->wolf->tex_x * 64 + mlx->infos->wolf->tex_y);
 		if (mlx->infos->wolf->nb_text == 9)

@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 18:31:56 by glavigno          #+#    #+#             */
-/*   Updated: 2018/11/08 10:05:37 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/09 13:20:00 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/15 17:35:20 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char		*ft_strsub(char const *s, size_t start, size_t len)
 {
-	char	*ptr;
+	char		*result;
 
-	if (!s)
+	result = ft_strnew(len);
+	if (!result || !s)
 		return (NULL);
-	if (!(ptr = ft_strnew(len)))
-		return (NULL);
-	ft_strncpy(ptr, s + start, len);
-	return (ptr);
+	result = ft_strncpy(result, s + start, len);
+	return (result);
 }

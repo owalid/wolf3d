@@ -3,26 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 18:17:10 by glavigno          #+#    #+#             */
-/*   Updated: 2019/01/03 10:09:32 by glavigno         ###   ########.fr       */
+/*   Created: 2018/08/04 16:39:43 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/15 17:15:50 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_atoi(const char *nptr)
+int			ft_atoi(const char *str)
 {
-	long	total;
-	short	sign;
+	int					i;
+	long long int		result;
+	int					sign;
 
-	while (ft_isspace(*nptr))
-		++nptr;
-	sign = (*nptr == '-') ? -1 : 1;
-	(*nptr == '+' || *nptr == '-') ? ++nptr : 0;
-	total = 0;
-	while (ft_isdigit(*nptr))
-		total = total * 10 + *nptr++ - '0';
-	return ((int)(total * sign));
+	sign = 1;
+	i = 0;
+	result = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result *= 10;
+		result = result + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
 }

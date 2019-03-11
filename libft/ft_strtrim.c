@@ -3,44 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 18:32:05 by glavigno          #+#    #+#             */
-/*   Updated: 2019/01/03 10:23:55 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/09 13:20:26 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/15 20:21:23 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_whitespace(char c)
+static int			ft_is_separator(char c)
 {
-	return (c == ' ' || c == '\n' || c == '\t');
+	if (c == ' ' || c == '\t' || c == '\n')
+		return (1);
+	return (0);
 }
 
-char		*ft_strtrim(char const *s)
+char				*ft_strtrim(char const *s)
 {
-	char	*begin;
-	char	*end;
-	char	*ptr;
+	int		start;
+	int		size;
 
 	if (!s)
 		return (NULL);
-	while (is_whitespace(*s))
-		++s;
-	if (!*s)
-	{
-		if (!(ptr = (char*)malloc(sizeof(char))))
-			return (NULL);
-		ft_bzero(ptr, 1);
-		return (ptr);
-	}
-	begin = (char*)s;
-	while (*(s + 1))
-		++s;
-	while (is_whitespace(*s))
-		--s;
-	end = (char*)s;
-	if (!(ptr = ft_strnew(end - begin + 1)))
-		return (NULL);
-	return (ft_strncpy(ptr, begin, end - begin + 1));
+	if (!s[0])
+		return (ft_strdup(""));
+	start = 0;
+	while (ft_is_separator(s[start]))
+		start++;
+	if (!s[start])
+		return (ft_strdup(""));
+	size = ft_strlen(s + start) - 1;
+	while (ft_is_separator(s[size + start]) && size >= 0)
+		size--;
+	size++;
+	return (ft_strsub(s, start, size));
 }

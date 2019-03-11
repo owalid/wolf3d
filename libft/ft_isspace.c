@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/18 16:09:00 by glavigno          #+#    #+#             */
-/*   Updated: 2018/12/18 16:11:22 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/12 18:14:45 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/12 18:16:29 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(int c)
+int		ft_isspace(char c)
 {
-	return ((c >= 9 && c <= 13) || c == 32);
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\r' || c == '\f'
+			|| c == ' ')
+		return (1);
+	return (0);
 }

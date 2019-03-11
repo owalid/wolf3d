@@ -3,68 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 18:31:36 by glavigno          #+#    #+#             */
-/*   Updated: 2019/01/03 10:40:15 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/09 13:26:17 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/15 20:48:49 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	words_counter(char *str, char c)
+static int			nb_word(const char *str, char c)
 {
-	int	i;
+	int		i;
+	int		nb_words;
+	int		in_word;
 
 	i = 0;
-	while (*str)
-	{
-		if (*str != c && (*(str + 1) == c || !*(str + 1)))
-			++i;
-		++str;
-	}
-	return (i);
-}
-
-static int	create_table(char **tab, char *str, char c)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-
-	i = 0;
-	k = 0;
+	nb_words = 0;
+	in_word = 0;
 	while (str[i])
 	{
-		if (str[i] && str[i] != c)
+		if (str[i] == c)
+			in_word = 0;
+		else if (in_word == 0 && str[i] != c)
 		{
-			j = 0;
-			while (str[i + j] && str[i + j] != c)
-				++j;
-			if (!(tab[k] = ft_strnew(j)))
-				return (0);
-			ft_strncpy(tab[k], &str[i], j);
-			++k;
-			i += j;
+			in_word = 1;
+			nb_words++;
 		}
-		else
-			++i;
+		i++;
 	}
-	tab[k] = NULL;
-	return (1);
+	return (nb_words);
 }
 
-char		**ft_strsplit(char const *s, char c)
+static int			word(const char *str, int i, char c)
 {
-	char	**full_table;
-	size_t	number_of_words;
+	int		size_words;
 
-	if (!s)
+	size_words = 0;
+	while (str[i++] && str[i] != c)
+		size_words++;
+	return (size_words);
+}
+
+char				**ft_strsplit(char const *s, char c)
+{
+	int			k;
+	int			i;
+	int			j;
+	char		**r;
+
+	if (!s || !c)
 		return (NULL);
-	number_of_words = words_counter((char*)s, c);
-	if (!(full_table = (char**)malloc(sizeof(char*) * (number_of_words + 1))))
+	if (!(r = (char**)malloc(sizeof(char*) * nb_word(s, c) + 1)))
 		return (NULL);
-	if (!(create_table(full_table, (char*)s, c)))
-		return (NULL);
-	return (full_table);
+	i = 0;
+	k = 0;
+	while (i < nb_word(s, c))
+	{
+		j = 0;
+		while (s[k] == c)
+			k++;
+		if (!(r[i] = ft_strnew(sizeof(char) * word(s, k, c))))
+			return (NULL);
+		while (s[k] != c && s[k])
+			r[i][j++] = s[k++];
+		r[i++][j] = '\0';
+	}
+	r[i] = NULL;
+	return (r);
 }

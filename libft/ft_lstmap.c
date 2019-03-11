@@ -3,36 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glavigno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oel-ayad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 18:19:19 by glavigno          #+#    #+#             */
-/*   Updated: 2018/12/18 14:14:27 by glavigno         ###   ########.fr       */
+/*   Created: 2018/11/09 16:44:29 by oel-ayad          #+#    #+#             */
+/*   Updated: 2018/11/14 16:22:42 by oel-ayad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*tmp_node;
-	t_list	*begin_node;
+	t_list		*result;
 
-	if (lst && f)
+	result = ft_lstnew(f(lst)->content, f(lst)->content_size);
+	lst = lst->next;
+	while (lst)
 	{
-		if (!(tmp_node = ft_lstnew(lst->content, lst->content_size)))
-			return (NULL);
+		ft_lst_pushback(&result, f(lst));
 		lst = lst->next;
-		tmp_node = f(tmp_node);
-		begin_node = tmp_node;
-		while (lst)
-		{
-			tmp_node->next = f(ft_lstnew(lst->content, lst->content_size));
-			if (!tmp_node->next)
-				return (NULL);
-			tmp_node = tmp_node->next;
-			lst = lst->next;
-		}
-		return (begin_node);
 	}
-	return (NULL);
+	return (result);
 }
